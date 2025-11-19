@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import { InteractiveCircle } from "./InteractiveCircle";
 
@@ -8,6 +8,37 @@ function App() {
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index);
   };
+
+  // Crisp Chat Integration
+  useEffect(() => {
+    const crispWebsiteId = import.meta.env.VITE_CRISP_WEBSITE_ID;
+
+    // Ne charger Crisp que si l'ID est configuré
+    if (!crispWebsiteId) {
+      console.warn("VITE_CRISP_WEBSITE_ID n'est pas configuré dans le fichier .env");
+      return;
+    }
+
+    // Configuration Crisp
+    window.$crisp = [];
+    window.CRISP_WEBSITE_ID = crispWebsiteId;
+
+    // Chargement du script Crisp
+    const script = document.createElement("script");
+    script.src = "https://client.crisp.chat/l.js";
+    script.async = true;
+    document.getElementsByTagName("head")[0].appendChild(script);
+
+    // Nettoyage lors du démontage du composant
+    return () => {
+      const existingScript = document.querySelector(
+        'script[src="https://client.crisp.chat/l.js"]'
+      );
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, []);
 
   return (
     <div className="app">
