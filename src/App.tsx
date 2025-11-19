@@ -2,6 +2,14 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { InteractiveCircle } from "./InteractiveCircle";
 
+// Import des screenshots
+import screen1 from "./assets/screenshots_app/screen1.jpg";
+import screen2 from "./assets/screenshots_app/screen2.jpg";
+import screen3 from "./assets/screenshots_app/screen3.jpg";
+import screen4 from "./assets/screenshots_app/screen4.jpg";
+import screen5 from "./assets/screenshots_app/screen5.jpg";
+import screen6 from "./assets/screenshots_app/screen6.jpg";
+
 function App() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
@@ -15,7 +23,9 @@ function App() {
 
     // Ne charger Crisp que si l'ID est configuré
     if (!crispWebsiteId) {
-      console.warn("VITE_CRISP_WEBSITE_ID n'est pas configuré dans le fichier .env");
+      console.warn(
+        "VITE_CRISP_WEBSITE_ID n'est pas configuré dans le fichier .env"
+      );
       return;
     }
 
@@ -127,78 +137,42 @@ function App() {
         <div className="carousel-container">
           <div className="carousel-column carousel-column-down">
             <div className="screenshot-item">
-              <img
-                src="src\assets\screenshots_app\screen1.jpg"
-                alt="Screenshot 1"
-              />
+              <img src={screen1} alt="Screenshot 1" />
             </div>
             <div className="screenshot-item">
-              <img
-                src="src\assets\screenshots_app\screen5.jpg"
-                alt="Screenshot 2"
-              />
+              <img src={screen2} alt="Screenshot 2" />
             </div>
             <div className="screenshot-item">
-              <img
-                src="src\assets\screenshots_app\screen3.jpg"
-                alt="Screenshot 3"
-              />
+              <img src={screen3} alt="Screenshot 3" />
             </div>
             <div className="screenshot-item">
-              <img
-                src="src\assets\screenshots_app\screen1.jpg"
-                alt="Screenshot 1"
-              />
+              <img src={screen1} alt="Screenshot 1" />
             </div>
             <div className="screenshot-item">
-              <img
-                src="src\assets\screenshots_app\screen5.jpg"
-                alt="Screenshot 2"
-              />
+              <img src={screen2} alt="Screenshot 2" />
             </div>
             <div className="screenshot-item">
-              <img
-                src="src\assets\screenshots_app\screen3.jpg"
-                alt="Screenshot 3"
-              />
+              <img src={screen3} alt="Screenshot 3" />
             </div>
           </div>
           <div className="carousel-column carousel-column-up">
             <div className="screenshot-item">
-              <img
-                src="src\assets\screenshots_app\screen4.jpg"
-                alt="Screenshot 4"
-              />
+              <img src={screen4} alt="Screenshot 4" />
             </div>
             <div className="screenshot-item">
-              <img
-                src="src\assets\screenshots_app\screen5.jpg"
-                alt="Screenshot 5"
-              />
+              <img src={screen5} alt="Screenshot 5" />
             </div>
             <div className="screenshot-item">
-              <img
-                src="src\assets\screenshots_app\screen6.jpg"
-                alt="Screenshot 6"
-              />
+              <img src={screen6} alt="Screenshot 6" />
             </div>
             <div className="screenshot-item">
-              <img
-                src="src\assets\screenshots_app\screen4.jpg"
-                alt="Screenshot 4"
-              />
+              <img src={screen4} alt="Screenshot 4" />
             </div>
             <div className="screenshot-item">
-              <img
-                src="src\assets\screenshots_app\screen5.jpg"
-                alt="Screenshot 5"
-              />
+              <img src={screen5} alt="Screenshot 5" />
             </div>
             <div className="screenshot-item">
-              <img
-                src="src\assets\screenshots_app\screen6.jpg"
-                alt="Screenshot 6"
-              />
+              <img src={screen6} alt="Screenshot 6" />
             </div>
           </div>
         </div>
