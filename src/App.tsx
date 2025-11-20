@@ -313,6 +313,53 @@ function App() {
         </div>
       </section>
 
+      {/* Waiting List Section */}
+      <section className="waiting-list">
+        <div className="container">
+          <div className="waiting-list-content">
+            <div className="waiting-list-badge">
+              Offre limitée - 20 places disponibles
+            </div>
+            <h2 className="waiting-list-title">Rejoignez la liste d'attente</h2>
+            <p className="waiting-list-description">
+              Les 20 premiers inscrits bénéficieront d'un{" "}
+              <span className="highlight">abonnement Pro gratuit à vie</span> !
+              Soyez parmi les premiers à transformer vos idées en applications.
+            </p>
+            <form
+              action="https://formsubmit.co/votre-email@domain.com"
+              method="POST"
+              className="waiting-list-form"
+            >
+              <input
+                type="hidden"
+                name="_subject"
+                value="Nouvelle inscription à la waiting list KitVite"
+              />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="text" name="_honey" style={{ display: "none" }} />
+              <div className="waiting-list-form-group">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Entrez votre email"
+                  className="waiting-list-input"
+                  required
+                />
+                <button type="submit" className="btn btn-primary btn-large">
+                  Rejoindre la liste →
+                </button>
+              </div>
+            </form>
+            <p className="waiting-list-note">
+              🔒 Vos données sont sécurisées, vous ne recevrez pas de spams,{" "}
+              <br />
+              uniquement une alerte le jour de sortie de l'application.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section id="pricing" className="pricing">
         <div className="container">
@@ -328,7 +375,7 @@ function App() {
                 <h3 className="pricing-title">Gratuit</h3>
                 <div className="pricing-price">
                   <span className="price-amount">0€</span>
-                  <span className="price-period">/mois</span>
+                  <span className="price-period"></span>
                 </div>
               </div>
               <ul className="pricing-features">
@@ -352,7 +399,7 @@ function App() {
                 <h3 className="pricing-title">Pro</h3>
                 <div className="pricing-price">
                   <span className="price-amount">11€</span>
-                  <span className="price-period">/mois</span>
+                  <span className="price-period"></span>
                 </div>
               </div>
               <ul className="pricing-features">
@@ -453,6 +500,68 @@ function App() {
                 </div>
               )}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="contact">
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-title">
+              Votre avis nous intéresse vraiment !
+            </h2>
+            <p className="section-description">
+              Que voulez-vous apprendre ? Quelles fonctionnalités
+              recherchez-vous?
+            </p>
+          </div>
+          <div className="contact-form-wrapper">
+            <form
+              action="https://formsubmit.co/votre-email@domain.com"
+              method="POST"
+              className="contact-form"
+            >
+              {/* Configuration FormSubmit */}
+              <input
+                type="hidden"
+                name="_subject"
+                value="Nouveau message depuis KitVite"
+              />
+              <input type="hidden" name="_captcha" value="true" />
+              <input type="text" name="_honey" style={{ display: "none" }} />
+
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Votre nom"
+                  className="form-input"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Votre email"
+                  className="form-input"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <textarea
+                  name="message"
+                  placeholder="Votre recommandation / Votre question"
+                  className="form-textarea"
+                  rows={5}
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" className="btn btn-primary btn-large">
+                Envoyer le message
+              </button>
+            </form>
           </div>
         </div>
       </section>
