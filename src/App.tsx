@@ -12,9 +12,18 @@ import screen6 from "./assets/screenshots_app/screen6.jpg";
 
 function App() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+  const [selectedPreferences, setSelectedPreferences] = useState<string[]>([]);
 
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index);
+  };
+
+  const togglePreference = (preference: string) => {
+    setSelectedPreferences((prev) =>
+      prev.includes(preference)
+        ? prev.filter((p) => p !== preference)
+        : [...prev, preference]
+    );
   };
 
   // Crisp Chat Integration
@@ -65,7 +74,9 @@ function App() {
               <a href="#how-it-works">Comment ça marche ?</a>
               <a href="#pricing">Abonnement</a>
             </nav>
-            <button className="btn btn-primary">Télécharger</button>
+            <button className="btn btn-primary">
+              Rejoindre la liste d'attente
+            </button>
           </div>
         </div>
       </header>
@@ -77,20 +88,20 @@ function App() {
           <div className="hero-content">
             <div className="hero-badge">Plus de 50 leçons gratuites</div>
             <h1 className="hero-title">
-              Créez votre première
+              Apprenez à créer votre première
               <br />
               application mobile
               <span className="gradient-text"> sans coder</span>
             </h1>
             <p className="hero-description">
               Publiez votre première application en quelques semaines seulement.
-              Aucune expérience requise. Grâce aux avancées de l'IA, vous pouvez
-              publier des applications sans écrire une seule ligne de code.
+              Aucune expérience requise. Grâce aux avancées de l'IA, c'est
+              maintenant possible sans coder.
             </p>
             <div className="hero-cta">
-              <button className="btn btn-large btn-primary">
-                Commencer gratuitement →
-              </button>
+              <a href="#waiting-list" className="btn btn-large btn-primary">
+                S'inscrire gratuitement →
+              </a>
             </div>
           </div>
         </div>
@@ -264,7 +275,7 @@ function App() {
             </div>
           </div>
           <div className="lessons-cta">
-            <p className="lessons-note">+ 59 autres leçons</p>
+            <p className="lessons-note">+ de 65 leçons au total</p>
           </div>
         </div>
       </section>
@@ -305,7 +316,7 @@ function App() {
                 <h3 className="step-title">Créez et publiez</h3>
                 <p className="step-description">
                   Suivez les étapes et publiez votre première application sur le
-                  Play Store et l'App Store
+                  store
                 </p>
               </div>
             </div>
@@ -314,15 +325,15 @@ function App() {
       </section>
 
       {/* Waiting List Section */}
-      <section className="waiting-list">
+      <section id="waiting-list" className="waiting-list">
         <div className="container">
           <div className="waiting-list-content">
             <div className="waiting-list-badge">
-              Offre limitée - 20 places disponibles
+              Offre limitée - 50 places disponibles
             </div>
             <h2 className="waiting-list-title">Rejoignez la liste d'attente</h2>
             <p className="waiting-list-description">
-              Les 20 premiers inscrits bénéficieront d'un{" "}
+              Les 50 premiers inscrits bénéficieront d'un{" "}
               <span className="highlight">abonnement Pro gratuit à vie</span> !
               Soyez parmi les premiers à transformer vos idées en applications.
             </p>
@@ -338,6 +349,11 @@ function App() {
               />
               <input type="hidden" name="_captcha" value="false" />
               <input type="text" name="_honey" style={{ display: "none" }} />
+              <input
+                type="hidden"
+                name="preferences"
+                value={selectedPreferences.join(", ")}
+              />
               <div className="waiting-list-form-group">
                 <input
                   type="email"
@@ -349,6 +365,57 @@ function App() {
                 <button type="submit" className="btn btn-primary btn-large">
                   Rejoindre la liste →
                 </button>
+              </div>
+              <div className="preferences-section">
+                <p className="preferences-question">
+                  Quel type de cours préféreriez-vous voir dans l'application ?
+                </p>
+                <div className="preferences-options">
+                  <button
+                    type="button"
+                    className={`preference-option ${
+                      selectedPreferences.includes("Apprendre à coder")
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() => togglePreference("Apprendre à coder")}
+                  >
+                    Apprendre à coder
+                  </button>
+                  <button
+                    type="button"
+                    className={`preference-option ${
+                      selectedPreferences.includes(
+                        "Apprendre à développer avec l'IA"
+                      )
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      togglePreference("Apprendre à développer avec l'IA")
+                    }
+                  >
+                    Apprendre à développer avec l'IA
+                  </button>
+                  <button
+                    type="button"
+                    className={`preference-option ${
+                      selectedPreferences.includes(
+                        "Apprendre la manière dont les applications complexes fonctionnent"
+                      )
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      togglePreference(
+                        "Apprendre la manière dont les applications complexes fonctionnent"
+                      )
+                    }
+                  >
+                    Apprendre la manière dont les applications complexes
+                    fonctionnent
+                  </button>
+                </div>
               </div>
             </form>
             <p className="waiting-list-note">
@@ -389,9 +456,9 @@ function App() {
                   exclusif
                 </li>
               </ul>
-              <button className="btn btn-outline">
-                Commencer gratuitement
-              </button>
+              <a href="#waiting-list" className="btn btn-outline">
+                Rejoindre la liste d'attente
+              </a>
             </div>
             <div className="pricing-card featured">
               <div className="pricing-badge">Version complète</div>
@@ -468,7 +535,7 @@ function App() {
               >
                 <span>
                   Vais-je apprendre à publier mes applications sur le Play Store
-                  ou l'App Store ?
+                  et l'App Store ?
                 </span>
                 <span className="faq-icon">{openFAQ === 2 ? "−" : "+"}</span>
               </button>
@@ -576,9 +643,9 @@ function App() {
               !
             </p>
             <div className="cta-buttons">
-              <button className="btn btn-large btn-white">
+              <a href="#waiting-list" className="btn btn-large btn-white">
                 Commencer gratuitement
-              </button>
+              </a>
               <div className="cta-badge">
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
@@ -595,63 +662,16 @@ function App() {
       <footer className="footer">
         <div className="container">
           <div className="footer-content">
-            <div className="footer-section">
-              <div className="footer-logo">
-                <span className="logo-icon">⚡</span>
-                <span className="logo-text">KitVite</span>
-              </div>
-              <p className="footer-description">
-                Transformez vos idées en applications avec l'aide de l'IA
-              </p>
-              <div className="footer-social">
-                <a href="#" className="social-link">
-                  LinkedIn
-                </a>
-                <a href="#" className="social-link">
-                  Instagram
-                </a>
-              </div>
-            </div>
-            <div className="footer-section">
-              <h4 className="footer-title">Produit</h4>
-              <a href="#" className="footer-link">
-                Fonctionnalités
-              </a>
-              <a href="#" className="footer-link">
-                Abonnement
-              </a>
-              <a href="#" className="footer-link">
-                FAQ
-              </a>
-            </div>
-            <div className="footer-section">
-              <h4 className="footer-title">Entreprise</h4>
-              <a href="#" className="footer-link">
-                À propos
-              </a>
-              <a href="#" className="footer-link">
-                Contact
-              </a>
-            </div>
-            <div className="footer-section">
-              <h4 className="footer-title">Légal</h4>
-              <a href="#" className="footer-link">
-                Confidentialité
-              </a>
-              <a href="#" className="footer-link">
-                Conditions
-              </a>
-              <a href="#" className="footer-link">
-                Cookies
-              </a>
-              <a href="#" className="footer-link">
-                Licences
-              </a>
-            </div>
-          </div>
-          <div className="footer-bottom">
             <p>&copy; 2025 KitVite. Tous droits réservés.</p>
-            <p>contact@kitvite.app</p>
+            <div className="footer-links">
+              <a href="#" className="footer-link">
+                Mentions légales
+              </a>
+              <span className="footer-separator">•</span>
+              <a href="#" className="footer-link">
+                Politique de confidentialité
+              </a>
+            </div>
           </div>
         </div>
       </footer>
